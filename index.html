@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>My Website</title>
+    <title>My Website v2</title>
 	<meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
@@ -15,31 +15,26 @@
     <h1 id="title"></h1>
     <p id="content"></p>
 
-    <button id="reloadButton">Reload</button>
+    <button id="refreshButton">Reload</button>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-        $(document).ready(function() {
-            // Load the initial data
-            loadData();
-
-            // Attach click event to the reload button
-            $('#reloadButton').click(function() {
-                loadData();
+        // Function to fetch and update the data
+        function fetchData() {
+            $.getJSON('data.json', function(data) {
+                $('#title').text(data.title);
+                $('#content').text(data.content);
             });
+        }
 
-            function loadData() {
-                // Fetch the data from GitHub
-                $.getJSON('https://raw.githubusercontent.com/misqzu/misqzu.github.io/main/data.json')
-                    .done(function(data) {
-                        // Update the displayed values
-                        $('#title').text(data.title);
-                        $('#content').text(data.content);
-                    })
-                    .fail(function() {
-                        console.log('Failed to fetch data from GitHub.');
-                    });
-            }
+        // Call the fetchData function on page load
+        $(document).ready(function() {
+            fetchData();
+        });
+
+        // Attach click event handler to the refresh button
+        $('#refreshButton').click(function() {
+            fetchData();
         });
     </script>
 </body>
