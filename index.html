@@ -4,16 +4,17 @@
     <title>My Website</title>
 </head>
 <body>
-    <h1 id="content">nowa</h1>
+    <h1 id="title"></h1>
+    <p id="content"></p>
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-        function updateContent() {
-            var newContent = document.getElementById('newContent').value;
-            document.getElementById('content').innerHTML = newContent;
-        }
+        $(document).ready(function() {
+            $.getJSON('data.json', function(data) {
+                $('#title').text(data.title);
+                $('#content').text(data.content);
+            });
+        });
     </script>
-    
-    <input type="text" id="newContent" placeholder="Enter new content">
-    <button onclick="updateContent()">Update</button>
 </body>
 </html>
