@@ -6,22 +6,20 @@
 <body>
     <h1 id="title"></h1>
     <p id="content"></p>
+	
+	<button id="reloadButton">Reload</button>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         $(document).ready(function() {
-            // Check if the data is available in the local storage
-            var cachedData = localStorage.getItem('cachedData');
-            if (cachedData) {
-                displayData(JSON.parse(cachedData));
-            } else {
+            
                 // Fetch the data from GitHub
                 $.getJSON('https://raw.githubusercontent.com/misqzu/misqzu.github.io/main/data.json', function(data) {
                     // Cache the data in the local storage
                     localStorage.setItem('cachedData', JSON.stringify(data));
                     displayData(data);
                 });
-            }
+            
 
             function displayData(data) {
                 $('#title').text(data.title);
