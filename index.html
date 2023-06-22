@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Website</title>
+</head>
+<body>
+    <h1 id="content">Initial Content</h1>
+
+    <script>
+        function updateContent() {
+            var newContent = document.getElementById('newContent').value;
+            document.getElementById('content').innerHTML = newContent;
+        }
+    </script>
+    
+    <input type="text" id="newContent" placeholder="Enter new content">
+    <button onclick="updateContent()">Update</button>
+</body>
+</html>
