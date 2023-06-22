@@ -12,20 +12,22 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         $(document).ready(function() {
-            
-                // Fetch the data from GitHub
-                $.getJSON('https://raw.githubusercontent.com/misqzu/misqzu.github.io/main/data.json', function(data) {
-                    // Cache the data in the local storage
-                    localStorage.setItem('cachedData', JSON.stringify(data));
-                    displayData(data);
-                });
+             // Load the initial data
+            loadData();
+
+            // Attach click event to the reload button
+            $('#reloadButton').click(function() {
+                loadData();
+            });
             
 
-            function displayData(data) {
-                $('#title').text(data.title);
-                $('#content').text(data.content);
-            }
-        });
+            function loadData() {
+                // Fetch the data from GitHub
+                $.getJSON('https://raw.githubusercontent.com/your-username/your-repo/main/data.json', function(data) {
+                    // Update the displayed values
+                    $('#title').text(data.title);
+                    $('#content').text(data.content);
+                });
     </script>
 </body>
 </html>
